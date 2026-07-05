@@ -1,0 +1,211 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   Vittelio — marketing site theme
+   Typography-forward: near-monochrome, Fraunces set large with optical sizing,
+   hairline rules instead of colored bands, forest as the single accent. Palette
+   + type lifted from the app (app/src/theme/index.js) — same brand, quieter voice.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --paper:#F6F4EE; --surface:#FFFFFF;
+  --forest:#3D6B4F; --forest-dark:#2D5A3D;
+  --sage:#5E8B6E; --sage-wash:#EEF4EE; --sage-tint:#E4EDE5;
+  --clay:#B36A4A; --clay-tint:#F3E4DC;
+  --ink:#1F2922; --slate:#6E7B72;
+  --line:#E2E0D8; --line-warm:#D4CFBF; --gold:#A98646; --note:#F0EDE4;
+  --rule:#D9D5C8;                       /* hairline colour for section rules   */
+  --maxw:1080px; --measure:940px;       /* text column for the editorial band  */
+  --radius:22px; --radius-sm:12px;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --shadow:0 1px 2px rgba(31,41,34,.04), 0 10px 30px rgba(31,41,34,.06);
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:var(--ui);
+  background:var(--surface);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+img { max-width:100%; display:block; }
+a { color:var(--forest); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+h1,h2,h3 { font-family:var(--display); font-weight:500; color:var(--ink);
+  line-height:1.08; letter-spacing:-.5px; font-optical-sizing:auto; }
+em { font-style:italic; }
+
+.wrap { max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+.eyebrow {
+  font-family:var(--ui); font-size:12px; font-weight:600; letter-spacing:2px;
+  text-transform:uppercase; color:var(--gold); margin-bottom:22px;
+}
+
+/* ── Buttons (kept for CTAs + legal/support pages) ───────────────────────── */
+.btn {
+  display:inline-flex; align-items:center; gap:9px;
+  font-family:var(--ui); font-size:15.5px; font-weight:600;
+  padding:13px 24px; border-radius:var(--radius-sm); border:1px solid transparent;
+  cursor:pointer; transition:transform .12s ease, background .15s, color .15s;
+  text-decoration:none;
+}
+.btn:hover { text-decoration:none; transform:translateY(-1px); }
+.btn:disabled { opacity:.6; cursor:default; transform:none; }
+.btn-primary { background:var(--ink); color:var(--paper); }
+.btn-primary:hover { background:var(--forest); }
+.btn-ghost { background:transparent; color:var(--ink); border-color:var(--line-warm); }
+.btn-ghost:hover { background:var(--surface); }
+.btn-light { background:var(--ink); color:var(--paper); }
+
+/* A quiet inline text link with an underline that grows on hover. */
+.textlink { font-family:var(--ui); font-size:15.5px; font-weight:600; color:var(--forest);
+  border-bottom:1.5px solid transparent; padding-bottom:2px; transition:border-color .15s; }
+.textlink:hover { text-decoration:none; border-bottom-color:var(--forest); }
+
+/* ── Brand wordmark (hero bar · sub-page top bar · footer) ────────────────── */
+.brand { display:flex; align-items:center; gap:11px; font-family:var(--display);
+  font-size:23px; font-weight:600; color:var(--ink); letter-spacing:-.4px; }
+.brand:hover { text-decoration:none; }
+.brand img { width:32px; height:32px; border-radius:9px; }
+
+/* ── Hero / lede — brand bar + centred type, no image ─────────────────────── */
+.lede { padding:22px 0 88px; background:var(--paper); border-bottom:1px solid var(--rule); }
+.lede.center { text-align:center; }
+.lede.center .eyebrow { margin-bottom:24px; }
+/* brand bar sits inside the hero on the same paper canvas */
+.lede-bar { display:flex; align-items:center; justify-content:space-between; gap:16px;
+  text-align:left; }
+.lede-nav { display:flex; align-items:center; gap:28px; }
+.lede-nav a { font-family:var(--ui); font-size:14.5px; font-weight:500; color:var(--slate); }
+.lede-nav a:hover { color:var(--ink); text-decoration:none; }
+.lede-body { padding-top:74px; }
+
+/* Document hero (privacy · terms) — same paper hero, right-sized for a title */
+.lede-doc { padding-bottom:56px; }
+.lede-doc .lede-body { padding-top:56px; }
+.lede-doc .lede-h { font-size:clamp(34px,5vw,54px); letter-spacing:-1px; margin-bottom:18px; }
+.lede-doc .lede-p { margin-bottom:16px; }
+
+/* ── Sub-page brand bar (privacy · terms · support · 404) — matches the hero ─ */
+.topbar { background:var(--paper); border-bottom:1px solid var(--rule); }
+.topbar-inner { max-width:var(--maxw); margin:0 auto; padding:22px 32px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.lede-h { font-size:clamp(40px,6.4vw,78px); font-weight:500; letter-spacing:-1.6px;
+  line-height:1.02; margin-bottom:28px; }
+.lede-h em { color:var(--forest); }
+.lede-p { font-size:clamp(18px,2vw,21px); line-height:1.55; color:#41504a;
+  max-width:52ch; margin:0 auto 28px; }
+.lede-note { font-size:13.5px; letter-spacing:.3px; color:var(--slate); margin-top:18px; }
+
+/* App Store badge (Apple's official mark, rebuilt inline so it stays crisp) */
+.appstore-badge { display:inline-flex; align-items:center; gap:11px; margin-top:6px;
+  background:#000; color:#fff; padding:9px 18px 10px; border-radius:13px;
+  transition:transform .12s ease, opacity .15s; }
+.appstore-badge:hover { text-decoration:none; transform:translateY(-1px); opacity:.9; }
+.appstore-badge svg { flex:none; margin-top:-2px; }
+.appstore-badge-txt { display:flex; flex-direction:column; line-height:1; text-align:left; }
+.appstore-badge-txt small { font-family:var(--ui); font-size:11px; font-weight:400;
+  letter-spacing:.2px; margin-bottom:3px; }
+.appstore-badge-txt strong { font-family:var(--ui); font-size:20px; font-weight:600; letter-spacing:-.2px; }
+
+/* ── Section headings shared by the two bands ─────────────────────────────── */
+.band-h { font-size:clamp(28px,4vw,46px); font-weight:500; letter-spacing:-1px;
+  line-height:1.05; max-width:20ch; margin-bottom:20px; }
+
+/* ── How it works + What's inside — full-bleed hairline tile grid ─────────── */
+.tiles { position:relative; padding:60px 0 0; background:var(--surface);
+  border-bottom:1px solid var(--rule); }
+.tiles-head { margin-bottom:60px; text-align:center; }
+.tiles-head .band-h { max-width:none; margin-left:auto; margin-right:auto; }
+/* offset anchor so the sticky nav doesn't cover the scroll target */
+.anchor { position:absolute; top:-88px; }
+
+/* The grid runs edge-to-edge; a 1px line-coloured gap draws the hairlines
+   between cells, so it reads as one full-width grid, not a row of cards. */
+.grid-full {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--line);
+  border-top:1px solid var(--line);
+}
+.cell {
+  background:var(--surface); padding:44px clamp(28px,4vw,56px);
+  transition:background .15s ease;
+}
+.cell:hover { background:var(--sage-wash); }
+.cell h3 { font-size:clamp(21px,2.2vw,26px); font-weight:500; letter-spacing:-.4px;
+  margin-bottom:12px; }
+.cell p { font-size:16.5px; color:var(--slate); line-height:1.62; max-width:42ch; }
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.footer { background:var(--ink); color:rgba(255,255,255,.7); padding:64px 0 42px; }
+.footer-inner { max-width:var(--maxw); margin:0 auto; padding:0 32px;
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px 40px; }
+.footer .brand { color:#fff; margin-bottom:12px; display:inline-flex; }
+.footer .brand img { border-radius:9px; }
+.footer .tagline { font-size:14px; color:rgba(255,255,255,.55); max-width:34ch; }
+.footer-links { display:flex; flex-wrap:wrap; gap:28px; }
+.footer-links a { color:rgba(255,255,255,.72); font-size:14.5px; font-weight:500; }
+.footer-links a:hover { color:#fff; }
+.footer-base { max-width:var(--maxw); margin:40px auto 0; padding:24px 32px 0;
+  border-top:1px solid rgba(255,255,255,.12); display:flex; flex-wrap:wrap; gap:10px;
+  justify-content:space-between; align-items:center; }
+.footer-base small { font-size:12.5px; color:rgba(255,255,255,.45); }
+.footer-disclaimer { max-width:var(--maxw); margin:16px auto 0; padding:0 32px;
+  font-size:12px; color:rgba(255,255,255,.4); line-height:1.6; }
+
+/* ── Legal / content pages (privacy · terms) ─────────────────────────────── */
+.page { max-width:760px; margin:0 auto; padding:64px 32px 48px; }
+.legal section { margin-bottom:30px; }
+.legal h2 { font-family:var(--ui); font-size:12px; font-weight:600; letter-spacing:1.6px;
+  text-transform:uppercase; color:var(--gold); margin-bottom:11px; }
+.legal p { font-size:16.5px; color:#46524a; }
+
+/* ── Contact form (support page) ─────────────────────────────────────────── */
+.card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:32px 30px; box-shadow:var(--shadow); }
+.field { margin-bottom:16px; }
+.field label { display:block; font-size:14px; font-weight:600; color:#42504a; margin-bottom:6px; }
+.field input, .field textarea {
+  width:100%; font:inherit; font-size:16px; color:var(--ink); background:#fff;
+  border:1px solid var(--line-warm); border-radius:11px; padding:12px 14px; outline:none;
+  transition:border-color .15s, box-shadow .15s;
+}
+.field input:focus, .field textarea:focus { border-color:var(--forest); box-shadow:0 0 0 3px var(--sage-wash); }
+.field textarea { resize:vertical; min-height:140px; }
+.hp { position:absolute; left:-9999px; top:-9999px; }
+#formStatus { margin-top:14px; font-size:15.5px; display:none; }
+#formStatus.ok { display:block; color:#3c7a52; }
+#formStatus.err { display:block; color:var(--clay); }
+.faq { margin-top:14px; }
+.faq .q { font-weight:600; color:var(--ink); margin-top:18px; }
+.faq .a { color:var(--slate); font-size:15.5px; }
+
+/* ── 404 ─────────────────────────────────────────────────────────────────── */
+.notfound { text-align:center; padding:140px 32px; }
+.notfound .big { font-family:var(--display); font-size:96px; font-weight:400; color:var(--sage); line-height:1; margin-bottom:12px; letter-spacing:-2px; }
+.notfound h1 { font-size:32px; font-weight:500; margin-bottom:12px; }
+.notfound p { color:var(--slate); margin-bottom:26px; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width:860px){
+  .wrap { padding:0 22px; }
+  .lede { padding:18px 0 56px; }
+  .lede-body { padding-top:52px; }
+  .tiles { padding-top:48px; }
+  .tiles-head { margin-bottom:48px; }
+  .tiles-head .band-h { white-space:normal; }
+  .grid-full { grid-template-columns:repeat(2,1fr); }
+  .cell { padding:36px 26px; }
+  .topbar-inner { padding:18px 22px; }
+}
+@media (max-width:520px){
+  .tiles { padding-top:44px; }
+  .tiles-head { margin-bottom:44px; }
+  .grid-full { grid-template-columns:1fr; }
+}
