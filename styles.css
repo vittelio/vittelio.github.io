@@ -22,7 +22,11 @@
 
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 
-html { scroll-behavior:smooth; }
+/* Paper on the root canvas: iPhone Safari fills the status-bar / notch strip with
+   the root background, so without this the strip reads white above the paper hero.
+   body keeps --surface, so page content is unchanged — only the safe-area/overscroll
+   regions pick this up. */
+html { scroll-behavior:smooth; background:var(--paper); }
 
 body {
   font-family:var(--ui);
