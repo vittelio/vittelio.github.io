@@ -80,6 +80,9 @@ em { font-style:italic; }
 
 /* ── Hero / lede — brand bar + centred type, no image ─────────────────────── */
 .lede { padding:22px 0 88px; background:var(--paper); border-bottom:1px solid var(--rule); }
+/* viewport-fit=cover lets the page paint behind the iPhone status bar (the only fix
+   Safari honors when website tinting is off); these keep the header content below it. */
+.lede { padding-top:calc(22px + env(safe-area-inset-top, 0px)); }
 .lede.center { text-align:center; }
 .lede.center .eyebrow { margin-bottom:24px; }
 /* brand bar sits inside the hero on the same paper canvas */
@@ -97,7 +100,7 @@ em { font-style:italic; }
 .lede-doc .lede-p { margin-bottom:16px; }
 
 /* ── Sub-page brand bar (privacy · terms · support · 404) — matches the hero ─ */
-.topbar { background:var(--paper); border-bottom:1px solid var(--rule); }
+.topbar { background:var(--paper); border-bottom:1px solid var(--rule); padding-top:env(safe-area-inset-top, 0px); }
 .topbar-inner { max-width:var(--maxw); margin:0 auto; padding:22px 32px;
   display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .lede-h { font-size:clamp(40px,6.4vw,78px); font-weight:500; letter-spacing:-1.6px;
