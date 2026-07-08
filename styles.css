@@ -30,7 +30,11 @@ html { scroll-behavior:smooth; background:var(--paper); }
 
 body {
   font-family:var(--ui);
-  background:var(--surface);
+  /* iPhone Safari paints the status-bar/notch strip with body's background-COLOR
+     (it ignores html's background and theme-color). Paper there matches the hero;
+     the gradient keeps the body's visible pixels --surface white as before. */
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--surface), var(--surface));
   color:var(--ink);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
@@ -106,6 +110,13 @@ em { font-style:italic; }
 .lede-h { font-size:clamp(40px,6.4vw,78px); font-weight:500; letter-spacing:-1.6px;
   line-height:1.02; margin-bottom:28px; }
 .lede-h em { color:var(--forest); }
+/* Phone widths: drop the desktop's forced two-row break and let the headline wrap
+   naturally at full size (founder call — don't shrink the slogan to force lines). */
+@media (max-width:640px) {
+  /* Naturally-wrapped three lines need more air than the desktop's tuned 1.02 */
+  .lede:not(.lede-doc) .lede-h { line-height:1.12; }
+  .lede:not(.lede-doc) .lede-h br { display:none; }
+}
 .lede-p { font-size:clamp(18px,2vw,21px); line-height:1.55; color:#41504a;
   max-width:52ch; margin:0 auto 28px; }
 .lede-note { font-size:13.5px; letter-spacing:.3px; color:var(--slate); margin-top:18px; }
