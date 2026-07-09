@@ -113,5 +113,20 @@
     </div>
   </footer>
 
+  <!-- iPhone Safari tints its top AND bottom bar regions from body's background-color
+       (one color for both — html background / theme-color / content behind the bars are
+       all ignored). Paper is right everywhere except over the dark footer, so swap to
+       ink while the footer is on screen; body's visible pixels come from its
+       background-IMAGE, so the page itself never changes. -->
+  <script>
+    (function () {
+      var footer = document.querySelector('.footer');
+      if (!footer || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (entries) {
+        document.body.style.backgroundColor = entries[0].isIntersecting ? '#1F2922' : '';
+      }).observe(footer);
+    })();
+  </script>
+
 </body>
 </html>

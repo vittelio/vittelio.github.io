@@ -30,9 +30,13 @@ html { scroll-behavior:smooth; background:var(--paper); }
 
 body {
   font-family:var(--ui);
-  /* iPhone Safari paints the status-bar/notch strip with body's background-COLOR
-     (it ignores html's background and theme-color). Paper there matches the hero;
-     the gradient keeps the body's visible pixels --surface white as before. */
+  /* iPhone Safari tints BOTH its bar regions (status-bar/notch strip AND the bottom
+     toolbar backdrop) from body's background-COLOR — one color for both; it ignores
+     html's background, theme-color, and any fixed elements behind the bars (all
+     verified in the simulator 2026-07-09). Paper matches the hero at the top; the
+     footer-pages script (see the <script> before </body>) swaps this to --ink while
+     the dark footer is on screen so the bottom bar blends into it. The gradient
+     keeps the body's visible pixels --surface white either way. */
   background-color:var(--paper);
   background-image:linear-gradient(var(--surface), var(--surface));
   color:var(--ink);
@@ -161,7 +165,8 @@ em { font-style:italic; }
 .cell p { font-size:16.5px; color:var(--slate); line-height:1.62; max-width:42ch; }
 
 /* ── Footer ──────────────────────────────────────────────────────────────── */
-.footer { background:var(--ink); color:rgba(255,255,255,.7); padding:64px 0 42px; }
+.footer { background:var(--ink); color:rgba(255,255,255,.7);
+  padding:64px 0 calc(42px + env(safe-area-inset-bottom, 0px)); }
 .footer-inner { max-width:var(--maxw); margin:0 auto; padding:0 32px;
   display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px 40px; }
 .footer .brand { color:#fff; margin-bottom:12px; display:inline-flex; }
