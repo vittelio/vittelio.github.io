@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#F6F4EE" />
+  <meta name="theme-color" content="#F0EDE4" />
   <title>MIND Diet Planner – Vittelio</title>
   <meta name="description" content="Vittelio measures how closely your usual eating aligns with the MIND diet, then suggests a few simple swaps — within the meals you already have — to move a little closer to that eating pattern." />
   <meta property="og:title" content="MIND Diet Planner – Vittelio" />
   <meta property="og:description" content="See how your week aligns with the MIND diet and get a few simple swaps." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vittelio.app/" />
+  <meta property="og:image" content="https://vittelio.app/images/mind-diet-score.webp" />
+  <link rel="canonical" href="https://vittelio.app/" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -18,6 +20,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Vittelio",
+    "operatingSystem": "iOS",
+    "applicationCategory": "HealthApplication",
+    "url": "https://vittelio.app/",
+    "installUrl": "https://apps.apple.com/app/id6784842527",
+    "description": "Vittelio measures how closely your usual eating aligns with the MIND diet, then suggests a few simple swaps — within the meals you already have — to move a little closer to that eating pattern."
+  }
+  </script>
 </head>
 <body>
 
@@ -26,6 +40,7 @@
     <div class="wrap lede-bar">
       <a class="brand" href="index.html"><img src="vittelio-icon.png" alt="" />Vittelio</a>
       <nav class="lede-nav">
+        <a href="mind-diet.html">The MIND diet</a>
         <a href="support.html">Support</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -40,6 +55,18 @@
         <svg viewBox="0 0 384 512" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
         <span class="appstore-badge-txt"><small>Download on the</small><strong>App Store</strong></span>
       </a>
+      <div class="share-wrap">
+        <button class="share-btn" type="button" aria-label="Share this page" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        </button>
+        <div class="share-pop" hidden>
+          <p class="share-pop-title">Share on</p>
+          <a class="share-pop-link" data-net="facebook" target="_blank" rel="noopener">Facebook</a>
+          <a class="share-pop-link" data-net="threads" target="_blank" rel="noopener">Threads</a>
+          <a class="share-pop-link" data-net="bluesky" target="_blank" rel="noopener">Bluesky</a>
+          <button class="share-pop-link share-copy" type="button">Copy link</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -51,42 +78,51 @@
     </div>
 
     <div class="grid-full">
-      <article class="cell">
+      <a class="cell" href="mind-diet-assessment.html">
         <h3>Start with your real week</h3>
         <p>Search the dishes you already eat and roughly how often. A few minutes, once — there's no daily food diary and nothing to log every day.</p>
-      </article>
-      <article class="cell">
-        <h3>A real MIND score</h3>
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="mind-diet-score.html">
+        <h3>The MIND score</h3>
         <p>Vittelio scores your whole week from 0 to 14 against the published MIND-diet research — an honest read on the pattern you eat, not single foods.</p>
-      </article>
-      <article class="cell">
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="mind-diet-food-swaps.html">
         <h3>Simple, same-meal swaps</h3>
         <p>A handful of improvements that fit the meals you already have, ranked best-first and chosen to keep calories in check.</p>
-      </article>
-      <article class="cell">
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="mind-diet-plan.html">
         <h3>Your own pace</h3>
         <p>Gentle, Steady, or Full — from your biggest couple of wins to the complete ideal week. Same guidance for everyone; you choose how far.</p>
-      </article>
-      <article class="cell">
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="mind-diet-recipes.html">
         <h3>A recipe for everything</h3>
         <p>Every recommendation comes with a clear, step-by-step recipe — there's never a suggested dish you don't know how to cook.</p>
-      </article>
-      <article class="cell">
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="mind-diet-shopping-list.html">
         <h3>A weekly shopping list</h3>
         <p>Your plan turns into an aisle-by-aisle list, sized to how often you actually cook each dish, so you buy just enough.</p>
-      </article>
-      <article class="cell">
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="mind-diet-tracker.html">
         <h3>Progress over time</h3>
         <p>Meals log themselves as you cook, and your score moves day by day — gentle and honest, with no streaks to keep or pressure to perform.</p>
-      </article>
-      <article class="cell">
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="mind-diet-restrictions.html">
         <h3>Respects what you avoid</h3>
         <p>Tell it what you skip — nuts, fish, dairy, gluten, vegetarian, or vegan — and every suggestion works around it.</p>
-      </article>
-      <article class="cell">
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
+      <a class="cell" href="private-diet-app.html">
         <h3>Private by design</h3>
         <p>No account, no ads, no trackers. Your data stays on your device — Vittelio has no backend server of its own.</p>
-      </article>
+        <span class="cell-more">Learn more&nbsp;&rarr;</span>
+      </a>
     </div>
   </section>
 
@@ -98,6 +134,7 @@
         <p class="tagline">A healthier way to eat, built around you — the MIND diet, made simple and private.</p>
       </div>
       <nav class="footer-links">
+        <a href="mind-diet.html">The MIND diet</a>
         <a href="support.html">Support</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -124,6 +161,48 @@
       new IntersectionObserver(function (entries) {
         document.body.style.backgroundColor = entries[0].isIntersecting ? '#1F2922' : '';
       }).observe(footer);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var wrap = document.querySelector('.share-wrap');
+      if (!wrap) return;
+      var btn = wrap.querySelector('.share-btn');
+      var pop = wrap.querySelector('.share-pop');
+      var url = encodeURIComponent(location.href);
+      var text = encodeURIComponent(document.title);
+      wrap.querySelector('[data-net="facebook"]').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+      wrap.querySelector('[data-net="threads"]').href = 'https://www.threads.net/intent/post?text=' + text + '%20' + url;
+      wrap.querySelector('[data-net="bluesky"]').href = 'https://bsky.app/intent/compose?text=' + text + '%20' + url;
+      var close = function () { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var opening = pop.hidden;
+        pop.hidden = !opening;
+        btn.setAttribute('aria-expanded', String(opening));
+      });
+      document.addEventListener('click', function (e) {
+        if (!pop.hidden && !wrap.contains(e.target)) close();
+      });
+      var copy = wrap.querySelector('.share-copy');
+      copy.addEventListener('click', function () {
+        var done = function () {
+          copy.textContent = 'Link copied';
+          setTimeout(function () { copy.textContent = 'Copy link'; close(); }, 1200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(location.href).then(done);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = location.href;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done();
+        }
+      });
     })();
   </script>
 

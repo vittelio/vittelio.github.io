@@ -26,7 +26,7 @@
    the root background, so without this the strip reads white above the paper hero.
    body keeps --surface, so page content is unchanged — only the safe-area/overscroll
    regions pick this up. */
-html { scroll-behavior:smooth; background:var(--paper); }
+html { scroll-behavior:smooth; background:var(--note); }
 
 body {
   font-family:var(--ui);
@@ -87,7 +87,10 @@ em { font-style:italic; }
 .brand img { width:32px; height:32px; border-radius:9px; }
 
 /* ── Hero / lede — brand bar + centred type, no image ─────────────────────── */
-.lede { padding:22px 0 88px; background:var(--paper); border-bottom:1px solid var(--rule); }
+/* Heroes sit on --note (one step warmer than the app's --paper) on EVERY page —
+   the screenshots' screens are --paper, so a paper hero made them read as
+   background-less; --note keeps them lit and all pages consistent. */
+.lede { padding-bottom:70px; background:var(--note); border-bottom:1px solid var(--rule); }
 /* viewport-fit=cover lets the page paint behind the iPhone status bar (the only fix
    Safari honors when website tinting is off); these keep the header content below it. */
 .lede { padding-top:calc(22px + env(safe-area-inset-top, 0px)); }
@@ -97,18 +100,23 @@ em { font-style:italic; }
 .lede-bar { display:flex; align-items:center; justify-content:space-between; gap:16px;
   text-align:left; }
 .lede-nav { display:flex; align-items:center; gap:28px; }
-.lede-nav a { font-family:var(--ui); font-size:14.5px; font-weight:500; color:var(--slate); }
+.lede-nav a { font-family:var(--ui); font-size:14.5px; font-weight:500; color:var(--slate);
+  white-space:nowrap; }
 .lede-nav a:hover { color:var(--ink); text-decoration:none; }
 .lede-body { padding-top:74px; }
 
-/* Document hero (privacy · terms) — same paper hero, right-sized for a title */
+/* Document hero (privacy · terms · feature pages) — same paper hero, right-sized
+   for a title. No top padding: these pages have the separate .topbar above (which
+   already carries the safe-area inset), so the homepage hero's 22px would be dead
+   space here. Double class so it also beats the responsive .lede padding. */
+.lede-doc, .lede.lede-doc { padding-top:0; }
 .lede-doc { padding-bottom:56px; }
 .lede-doc .lede-body { padding-top:56px; }
 .lede-doc .lede-h { font-size:clamp(34px,5vw,54px); letter-spacing:-1px; margin-bottom:18px; }
 .lede-doc .lede-p { margin-bottom:16px; }
 
 /* ── Sub-page brand bar (privacy · terms · support · 404) — matches the hero ─ */
-.topbar { background:var(--paper); border-bottom:1px solid var(--rule); padding-top:env(safe-area-inset-top, 0px); }
+.topbar { background:var(--note); border-bottom:1px solid var(--rule); padding-top:env(safe-area-inset-top, 0px); }
 .topbar-inner { max-width:var(--maxw); margin:0 auto; padding:22px 32px;
   display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .lede-h { font-size:clamp(40px,6.4vw,78px); font-weight:500; letter-spacing:-1.6px;
@@ -120,6 +128,12 @@ em { font-style:italic; }
   /* Naturally-wrapped three lines need more air than the desktop's tuned 1.02 */
   .lede:not(.lede-doc) .lede-h { line-height:1.12; }
   .lede:not(.lede-doc) .lede-h br { display:none; }
+  /* Brand bars (topbar + homepage in-hero bar): four links don't fit beside the
+     wordmark — keep the icon, drop the brand text, tighten the nav so every link
+     stays on one line. */
+  .topbar .brand, .lede-bar .brand { font-size:0; gap:0; }
+  .lede-nav { gap:14px; }
+  .lede-nav a { font-size:13px; }
 }
 .lede-p { font-size:clamp(18px,2vw,21px); line-height:1.55; color:#41504a;
   max-width:52ch; margin:0 auto 28px; }
@@ -209,6 +223,107 @@ em { font-style:italic; }
 .faq .q { font-weight:600; color:var(--ink); margin-top:18px; }
 .faq .a { color:var(--slate); font-size:15.5px; }
 
+/* ── Feature / guide article pages (mind-diet*.html · private-diet-app.html) ─
+   App-landing hero: text left with the App Store badge below it, the phone
+   screenshot rising from the hero's bottom edge and CROPPED by it (only the
+   top ~72% shows — the aspect-ratio on .hero-phone is the crop). Article
+   below is a single reading column. */
+.lede-feature { text-align:left; padding-bottom:0; }
+.lede.lede-feature { padding-bottom:0; }      /* beats the responsive .lede padding */
+.lede-feature .lede-body { padding-top:56px; display:grid;
+  grid-template-columns:minmax(0,1fr) 300px; gap:24px 72px; align-items:end; }
+.feature-hero-text { padding-bottom:64px; }
+.lede-feature .lede-h { font-size:clamp(34px,5vw,54px); letter-spacing:-1px;
+  margin-bottom:18px; }
+.lede-feature .lede-p { margin:0 0 30px; max-width:52ch; }
+.hero-phone { margin:0; align-self:end; aspect-ratio:1100/1240; overflow:hidden; }
+/* hero-tall variant: same bottom-flush crop, window a few px taller so the
+   phone's top rises slightly (majority still hidden). Second number = crop
+   height relative to width; bigger = more phone visible. */
+.hero-tall .hero-phone { aspect-ratio:1100/1360; }
+.hero-phone img { width:100%; height:auto; border-radius:44px; border:11px solid var(--ink);
+  background:var(--ink); box-shadow:var(--shadow); }
+
+/* Share button beside the App Store badge (post pages): one circle that opens
+   a "Share on" popover — plain intent links (Facebook · Threads · Bluesky) +
+   copy link. No SDKs, no trackers. */
+.share-wrap { position:relative; display:inline-block; vertical-align:middle; }
+.share-btn { display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; margin:-7px 0 0 14px;
+  border:1px solid var(--line-warm); border-radius:50%; background:var(--surface);
+  color:var(--ink); cursor:pointer;
+  transition:background .15s, transform .12s ease; }
+.share-btn:hover { background:var(--sage-wash); }
+.share-btn:active { transform:scale(.96); }
+.share-pop { position:absolute; top:calc(100% + 10px); left:14px; z-index:30;
+  min-width:200px; background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius-sm); box-shadow:var(--shadow);
+  padding:14px 18px 8px; text-align:left; }
+.share-pop-title { font-family:var(--ui); font-size:11.5px; font-weight:600;
+  letter-spacing:1.2px; text-transform:uppercase; color:var(--slate);
+  margin-bottom:4px; }
+.share-pop-link { display:block; width:100%; font-family:var(--ui); font-size:15px;
+  font-weight:500; color:var(--forest); padding:9px 0;
+  border:0; border-bottom:1px solid var(--line); background:none;
+  text-align:left; cursor:pointer; }
+.share-pop-link:last-child { border-bottom:0; }
+.share-pop-link:hover { text-decoration:none; color:var(--forest-dark); }
+
+/* Explore links in the sidebar, top-aligned with the article (the cropped
+   phone stays in the hero above). */
+.side-links { margin:0 15px; }
+.side-links h2 { font-size:18px; font-weight:500; letter-spacing:-.3px; margin-bottom:10px; }
+.side-links a { display:block; font-size:15px; font-weight:500; color:var(--forest);
+  padding:9px 0; border-bottom:1px solid var(--line); }
+.side-links a:hover { text-decoration:none; color:var(--forest-dark); }
+/* The page's own entry: same slot, not a link */
+.side-links .current { display:block; font-size:15px; font-weight:500; color:var(--ink);
+  padding:9px 0; border-bottom:1px solid var(--line); }
+
+/* Variant: FAQ as a horizontal dark band that joins the footer */
+.faq-dark { background:var(--ink); padding:60px 0 8px; }
+.faq-dark .eyebrow { margin-bottom:10px; }
+.faq-dark h2 { color:#fff; font-size:clamp(24px,3vw,32px); font-weight:500;
+  letter-spacing:-.5px; margin-bottom:34px; }
+.faq-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
+.faq-dark .q { color:#fff; font-family:var(--ui); font-weight:600; font-size:15.5px;
+  line-height:1.5; }
+.faq-dark .a { color:rgba(255,255,255,.62); font-size:14.5px; line-height:1.68;
+  margin-top:9px; }
+
+/* Article left, sidebar right (stacks on phones) */
+/* Sidebar column = 300px with the hero's 72px gap, so it sits exactly under
+   the phone at the phone's width. */
+.feature-wrap { max-width:var(--maxw); margin:0 auto; padding:56px 32px;
+  display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:24px 72px; align-items:start; }
+.article h2 { font-size:clamp(23px,2.6vw,30px); font-weight:500; letter-spacing:-.5px;
+  margin:44px 0 14px; }
+.article h2:first-child { margin-top:0; }
+.article p { font-size:17px; color:#46524a; line-height:1.7; margin-bottom:16px; max-width:64ch; }
+.article ul { margin:0 0 16px 22px; }
+.article li { font-size:17px; color:#46524a; line-height:1.7; margin-bottom:8px; }
+.article li strong, .article p strong { color:var(--ink); font-weight:600; }
+/* Inline research citation — matches the in-app "(Author et al., Year ↗)" pattern */
+.cite { white-space:nowrap; font-size:15px; color:var(--forest); }
+@media (max-width:860px){
+  .lede-feature .lede-body { grid-template-columns:1fr; padding-top:44px; }
+  .feature-hero-text { padding-bottom:0; }
+  .hero-phone { display:none; }
+  /* The desktop hero's padding-bottom:0 exists for the bottom-flush phone crop;
+     with the phone hidden the badge sat on the rule — give the text hero air. */
+  .lede.lede-feature { padding-bottom:44px; }
+  .feature-wrap { grid-template-columns:1fr; gap:44px; padding:44px 22px; }
+  .side-links { margin:0; }
+  .faq-cols { grid-template-columns:1fr; gap:26px; }
+}
+
+/* Homepage tiles as links (cells link to the per-feature pages) */
+a.cell { display:block; color:inherit; }
+a.cell:hover { text-decoration:none; }
+.cell-more { display:inline-block; margin-top:14px; font-size:14.5px; font-weight:600;
+  color:var(--forest); }
+a.cell:hover .cell-more { color:var(--forest-dark); }
+
 /* ── 404 ─────────────────────────────────────────────────────────────────── */
 .notfound { text-align:center; padding:140px 32px; }
 .notfound .big { font-family:var(--display); font-size:96px; font-weight:400; color:var(--sage); line-height:1; margin-bottom:12px; letter-spacing:-2px; }
@@ -226,6 +341,10 @@ em { font-style:italic; }
   .grid-full { grid-template-columns:repeat(2,1fr); }
   .cell { padding:36px 26px; }
   .topbar-inner { padding:18px 22px; }
+  .page { padding:44px 22px 40px; }
+  .footer-inner { padding:0 22px; }
+  .footer-base { padding:24px 22px 0; }
+  .footer-disclaimer { padding:0 22px; }
 }
 @media (max-width:520px){
   .tiles { padding-top:44px; }
