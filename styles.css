@@ -243,6 +243,31 @@ em { font-style:italic; }
 .hero-tall .hero-phone { aspect-ratio:1100/1360; }
 .hero-phone img { width:100%; height:auto; border-radius:44px; border:11px solid var(--ink);
   background:var(--ink); box-shadow:var(--shadow); }
+/* hero-shot variant: image is a pre-rendered phone mockup on a transparent
+   background carrying its own frame — no CSS frame; drop-shadow (not
+   box-shadow) so the shadow follows the phone's silhouette. */
+.hero-shot .hero-phone img { border:0; border-radius:0; background:transparent;
+  box-shadow:none;
+  filter:drop-shadow(0 1px 2px rgba(31,41,34,.04)) drop-shadow(0 10px 30px rgba(31,41,34,.06)); }
+
+/* Food-group tables (mind-diet.html): two cards side by side — encouraged
+   (sage) left, limited (clay) right. Rows: group name + muted examples. */
+.groups-tables { display:grid; grid-template-columns:1fr 1fr; gap:22px;
+  margin:26px 0 10px; align-items:start; }
+.groups-card { background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius-sm); overflow:hidden; box-shadow:var(--shadow); }
+.groups-head { padding:12px 18px; font-family:var(--ui); font-size:12.5px;
+  font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.groups-head-enc { background:var(--sage-wash); color:var(--forest); }
+.groups-head-lim { background:var(--clay-tint); color:var(--clay); }
+.groups-card ul { list-style:none; margin:0; padding:0; }
+.groups-card li { padding:11px 18px; border-top:1px solid var(--line);
+  font-family:var(--ui); font-weight:600; font-size:15px; color:var(--ink); }
+.groups-card .g-ex { display:block; font-weight:400; font-size:13.5px;
+  color:var(--slate); margin-top:2px; }
+@media (max-width:760px) {
+  .groups-tables { grid-template-columns:1fr; }
+}
 
 /* Share button beside the App Store badge (post pages): one circle that opens
    a "Share on" popover — plain intent links (Facebook · Threads · Bluesky) +
@@ -280,15 +305,15 @@ em { font-style:italic; }
 .side-links .current { display:block; font-size:15px; font-weight:500; color:var(--ink);
   padding:9px 0; border-bottom:1px solid var(--line); }
 
-/* Variant: FAQ as a horizontal dark band that joins the footer */
-.faq-dark { background:var(--ink); padding:60px 0 8px; }
+/* Variant: FAQ as a horizontal forest band above the darker footer */
+.faq-dark { background:#334F43; padding:60px 0 68px; }
 .faq-dark .eyebrow { margin-bottom:10px; }
 .faq-dark h2 { color:#fff; font-size:clamp(24px,3vw,32px); font-weight:500;
   letter-spacing:-.5px; margin-bottom:34px; }
 .faq-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
 .faq-dark .q { color:#fff; font-family:var(--ui); font-weight:600; font-size:15.5px;
   line-height:1.5; }
-.faq-dark .a { color:rgba(255,255,255,.62); font-size:14.5px; line-height:1.68;
+.faq-dark .a { color:rgba(255,255,255,.80); font-size:14.5px; line-height:1.68;
   margin-top:9px; }
 
 /* Article left, sidebar right (stacks on phones) */
@@ -302,6 +327,8 @@ em { font-style:italic; }
 .article p { font-size:17px; color:#46524a; line-height:1.7; margin-bottom:16px; max-width:64ch; }
 .article ul { margin:0 0 16px 22px; }
 .article li { font-size:17px; color:#46524a; line-height:1.7; margin-bottom:8px; }
+.article .groups-card ul { margin:0; }
+.article .groups-card li { font-size:15px; line-height:1.5; margin:0; color:var(--ink); }
 .article li strong, .article p strong { color:var(--ink); font-weight:600; }
 /* Inline research citation — matches the in-app "(Author et al., Year ↗)" pattern */
 .cite { white-space:nowrap; font-size:15px; color:var(--forest); }
